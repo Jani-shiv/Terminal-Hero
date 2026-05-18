@@ -5,6 +5,16 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+import java.util.Properties
+import java.io.FileInputStream
+
+// Load signing properties from `key.properties` if present (keystore kept out of VCS)
+val keystorePropertiesFile = rootProject.file("key.properties")
+val keystoreProperties = Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace = "com.example.terminal_hero"
     compileSdk = flutter.compileSdkVersion
@@ -32,9 +42,23 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // Use release signing config if present, otherwise fall back to debug signing.
+            try {
+                signingConfig = signingConfigs.getByName("release")
+            } catch (e: Exception) {
+                signingConfig = signingConfigs.getByName("debug")
+            }
+        }
+    }
+
+    // Create a release signing config if keystore properties were provided
+    if (keystorePropertiesFile.exists()) {
+        signingConfigs.create("release") {
+            val storeFilePath = keystoreProperties.getProperty("storeFile") ?: "android/app/release-keystore.jks"
+            storeFile = file(storeFilePath)
+            storePassword = keystoreProperties.getProperty("storePassword")
+            keyAlias = keystoreProperties.getProperty("keyAlias")
+            keyPassword = keystoreProperties.getProperty("keyPassword")
         }
     }
 }
