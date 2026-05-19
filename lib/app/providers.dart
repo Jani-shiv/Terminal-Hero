@@ -72,6 +72,22 @@ final missionsProvider = Provider<List<Mission>>((ref) => SampleContent.missions
 
 final dailyChallengeProvider = Provider<Mission>((ref) {
   final missions = ref.watch(missionsProvider);
+  if (missions.isEmpty) {
+    // Fallback: if sample content is empty (unexpected), return a minimal mission
+    return const Mission(
+      id: 'default-mission',
+      title: 'Welcome mission',
+      category: MissionCategory.basicLinux,
+      story: 'Welcome to Terminal Hero',
+      explanation: 'This is a safe default mission.',
+      expectedCommands: ['ls'],
+      hints: ['Try `ls` to list files.'],
+      xpReward: 10,
+      badgeReward: 'Welcome Badge',
+      difficulty: 1,
+    );
+  }
+
   return missions[DateTime.now().day % missions.length];
 });
 

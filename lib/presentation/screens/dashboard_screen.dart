@@ -17,6 +17,21 @@ class DashboardScreen extends ConsumerWidget {
     final daily = ref.watch(dailyChallengeProvider);
     final missions = ref.watch(missionsProvider);
 
+    final firstMission = missions.isNotEmpty
+      ? missions.first
+      : (SampleContent.missions.isNotEmpty ? SampleContent.missions.first : const Mission(
+        id: 'default-mission',
+        title: 'Welcome mission',
+        category: MissionCategory.basicLinux,
+        story: 'Welcome to Terminal Hero',
+        explanation: 'This is a safe default mission.',
+        expectedCommands: ['ls'],
+        hints: ['Try `ls` to list files.'],
+        xpReward: 10,
+        badgeReward: 'Welcome Badge',
+        difficulty: 1,
+        ));
+
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -64,8 +79,8 @@ class DashboardScreen extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  FilledButton.icon(
-                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => MissionPlayScreen(mission: missions.first))),
+                      FilledButton.icon(
+                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => MissionPlayScreen(mission: firstMission))),
                     icon: const Icon(Icons.play_arrow),
                     label: const Text('Continue mission'),
                   ),
