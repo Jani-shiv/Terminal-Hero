@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../app/providers.dart';
 import '../../core/theme/app_theme.dart';
 import '../../data/sample_content.dart';
+import '../../domain/models/mission.dart';
 import '../widgets/neon_card.dart';
 import 'mission_play_screen.dart';
 
