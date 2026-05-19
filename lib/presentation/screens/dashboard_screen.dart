@@ -19,7 +19,7 @@ class DashboardScreen extends ConsumerWidget {
 
     final firstMission = missions.isNotEmpty
       ? missions.first
-      : (SampleContent.missions.isNotEmpty ? SampleContent.missions.first : const Mission(
+      : (SampleContent.missions.isNotEmpty ? SampleContent.missions.first : Mission(
         id: 'default-mission',
         title: 'Welcome mission',
         category: MissionCategory.basicLinux,
