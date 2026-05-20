@@ -19,19 +19,21 @@ class DashboardScreen extends ConsumerWidget {
     final missions = ref.watch(missionsProvider);
 
     final firstMission = missions.isNotEmpty
-      ? missions.first
-      : (SampleContent.missions.isNotEmpty ? SampleContent.missions.first : Mission(
-        id: 'default-mission',
-        title: 'Welcome mission',
-        category: MissionCategory.basicLinux,
-        story: 'Welcome to Terminal Hero',
-        explanation: 'This is a safe default mission.',
-        expectedCommands: ['ls'],
-        hints: ['Try `ls` to list files.'],
-        xpReward: 10,
-        badgeReward: 'Welcome Badge',
-        difficulty: 1,
-        ));
+        ? missions.first
+        : (SampleContent.missions.isNotEmpty
+            ? SampleContent.missions.first
+            : const Mission(
+                id: 'default-mission',
+                title: 'Welcome mission',
+                category: MissionCategory.basicLinux,
+                story: 'Welcome to Terminal Hero',
+                explanation: 'This is a safe default mission.',
+                expectedCommands: ['ls'],
+                hints: ['Try `ls` to list files.'],
+                xpReward: 10,
+                badgeReward: 'Welcome Badge',
+                difficulty: 1,
+              ));
 
     return Scaffold(
       body: SafeArea(
@@ -42,19 +44,26 @@ class DashboardScreen extends ConsumerWidget {
               children: [
                 CircleAvatar(
                   backgroundColor: AppTheme.neon,
-                  child: Text(profile.avatar, style: const TextStyle(color: AppTheme.ink, fontWeight: FontWeight.w900)),
+                  child: Text(profile.avatar,
+                      style: const TextStyle(
+                          color: AppTheme.ink, fontWeight: FontWeight.w900)),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(profile.username, style: const TextStyle(fontWeight: FontWeight.w900)),
-                      Text(profile.rank, style: const TextStyle(color: AppTheme.cyan, fontSize: 12)),
+                      Text(profile.username,
+                          style: const TextStyle(fontWeight: FontWeight.w900)),
+                      Text(profile.rank,
+                          style: const TextStyle(
+                              color: AppTheme.cyan, fontSize: 12)),
                     ],
                   ),
                 ),
-                _Metric(icon: Icons.local_fire_department, value: '${profile.streak}d'),
+                _Metric(
+                    icon: Icons.local_fire_department,
+                    value: '${profile.streak}d'),
               ],
             ),
             const SizedBox(height: 18),
@@ -64,9 +73,14 @@ class DashboardScreen extends ConsumerWidget {
                 children: [
                   Row(
                     children: [
-                      Text('Level ${profile.level}', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
+                      Text('Level ${profile.level}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(fontWeight: FontWeight.w900)),
                       const Spacer(),
-                      Text('${profile.xp}/${profile.xpForNextLevel} XP', style: const TextStyle(color: AppTheme.neon)),
+                      Text('${profile.xp}/${profile.xpForNextLevel} XP',
+                          style: const TextStyle(color: AppTheme.neon)),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -80,8 +94,11 @@ class DashboardScreen extends ConsumerWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                      FilledButton.icon(
-                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => MissionPlayScreen(mission: firstMission))),
+                  FilledButton.icon(
+                    onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (_) =>
+                                MissionPlayScreen(mission: firstMission))),
                     icon: const Icon(Icons.play_arrow),
                     label: const Text('Continue mission'),
                   ),
@@ -90,7 +107,8 @@ class DashboardScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 14),
             NeonCard(
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => MissionPlayScreen(mission: daily))),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => MissionPlayScreen(mission: daily))),
               child: Row(
                 children: [
                   const Icon(Icons.bolt, color: AppTheme.amber, size: 34),
@@ -99,17 +117,20 @@ class DashboardScreen extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Daily challenge', style: TextStyle(fontWeight: FontWeight.w900)),
+                        const Text('Daily challenge',
+                            style: TextStyle(fontWeight: FontWeight.w900)),
                         Text(daily.title),
                       ],
                     ),
                   ),
-                  Text('+${daily.xpReward} XP', style: const TextStyle(color: AppTheme.neon)),
+                  Text('+${daily.xpReward} XP',
+                      style: const TextStyle(color: AppTheme.neon)),
                 ],
               ),
             ),
             const SizedBox(height: 14),
-            _SectionTitle(title: 'Leaderboard preview', action: '#4 today'),
+            const _SectionTitle(
+                title: 'Leaderboard preview', action: '#4 today'),
             for (final row in SampleContent.leaderboard.take(3))
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
@@ -119,8 +140,12 @@ class DashboardScreen extends ConsumerWidget {
                     children: [
                       Text(row.$4),
                       const SizedBox(width: 10),
-                      Expanded(child: Text(row.$1, style: const TextStyle(fontWeight: FontWeight.w800))),
-                      Text('${row.$2} XP', style: const TextStyle(color: AppTheme.cyan)),
+                      Expanded(
+                          child: Text(row.$1,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w800))),
+                      Text('${row.$2} XP',
+                          style: const TextStyle(color: AppTheme.cyan)),
                     ],
                   ),
                 ),
@@ -138,14 +163,21 @@ class DashboardScreen extends ConsumerWidget {
                   return SizedBox(
                     width: 236,
                     child: NeonCard(
-                      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => MissionPlayScreen(mission: mission))),
+                      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => MissionPlayScreen(mission: mission))),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(mission.title, style: const TextStyle(fontWeight: FontWeight.w900)),
+                          Text(mission.title,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w900)),
                           const SizedBox(height: 8),
-                          Expanded(child: Text(mission.story, maxLines: 3, overflow: TextOverflow.ellipsis)),
-                          Text('+${mission.xpReward} XP', style: const TextStyle(color: AppTheme.neon)),
+                          Expanded(
+                              child: Text(mission.story,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis)),
+                          Text('+${mission.xpReward} XP',
+                              style: const TextStyle(color: AppTheme.neon)),
                         ],
                       ),
                     ),
@@ -184,9 +216,14 @@ class _SectionTitle extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10, top: 4),
       child: Row(
         children: [
-          Text(title, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w900)),
+          Text(title,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium
+                  ?.copyWith(fontWeight: FontWeight.w900)),
           const Spacer(),
-          Text(action, style: const TextStyle(color: AppTheme.cyan, fontSize: 12)),
+          Text(action,
+              style: const TextStyle(color: AppTheme.cyan, fontSize: 12)),
         ],
       ),
     );

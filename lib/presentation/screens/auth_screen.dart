@@ -63,18 +63,22 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
             FilledButton(
               onPressed: () {
                 final name = emailController.text.split('@').first;
-                ref.read(sessionProvider.notifier).signIn(name.isEmpty ? 'terminal_hero' : name);
+                ref
+                    .read(sessionProvider.notifier)
+                    .signIn(name.isEmpty ? 'terminal_hero' : name);
               },
               child: const Text('Start learning'),
             ),
             const SizedBox(height: 10),
             OutlinedButton(
-              onPressed: () => ref.read(sessionProvider.notifier).continueAsGuest(),
+              onPressed: () =>
+                  ref.read(sessionProvider.notifier).continueAsGuest(),
               child: const Text('Continue as guest'),
             ),
             const SizedBox(height: 10),
             OutlinedButton.icon(
-              onPressed: () => ref.read(sessionProvider.notifier).signIn('google_hero'),
+              onPressed: () =>
+                  ref.read(sessionProvider.notifier).signIn('google_hero'),
               icon: const Icon(Icons.g_mobiledata),
               label: const Text('Continue with Google'),
             ),

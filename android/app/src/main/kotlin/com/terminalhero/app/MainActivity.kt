@@ -1,4 +1,4 @@
-package com.example.terminal_hero
+package com.terminalhero.app
 
 import io.flutter.embedding.android.FlutterActivity
 

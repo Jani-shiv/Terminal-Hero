@@ -7,9 +7,13 @@ class SampleContent {
       title: 'Find the Hidden File',
       category: MissionCategory.basicLinux,
       story: 'A server contains a hidden clue. Reveal every file in the room.',
-      explanation: 'Use ls to list files. Add -la to include hidden files and details.',
+      explanation:
+          'Use ls to list files. Add -la to include hidden files and details.',
       expectedCommands: ['ls -la', 'ls -al'],
-      hints: ['Hidden files start with a dot.', 'Try combining long and all flags.'],
+      hints: [
+        'Hidden files start with a dot.',
+        'Try combining long and all flags.'
+      ],
       xpReward: 80,
       badgeReward: 'First Command',
       difficulty: 1,
@@ -21,7 +25,10 @@ class SampleContent {
       story: 'Your team needs a secure workspace named vault.',
       explanation: 'mkdir creates directories in the current location.',
       expectedCommands: ['mkdir vault'],
-      hints: ['The command starts with mkdir.', 'Use the target directory name after it.'],
+      hints: [
+        'The command starts with mkdir.',
+        'Use the target directory name after it.'
+      ],
       xpReward: 90,
       badgeReward: 'Linux Explorer',
       difficulty: 1,
@@ -30,8 +37,10 @@ class SampleContent {
       id: 'permissions-lock-script',
       title: 'Lock the Script',
       category: MissionCategory.permissions,
-      story: 'A deploy script is too open. Make it executable only for the owner.',
-      explanation: 'chmod 700 gives the owner read, write, execute permissions.',
+      story:
+          'A deploy script is too open. Make it executable only for the owner.',
+      explanation:
+          'chmod 700 gives the owner read, write, execute permissions.',
       expectedCommands: ['chmod 700 deploy.sh'],
       hints: ['Permissions can be numeric.', 'Owner-only full access is 700.'],
       xpReward: 130,
@@ -69,7 +78,10 @@ class SampleContent {
       story: 'Before shipping the patch, inspect the repository status.',
       explanation: 'git status shows staged, unstaged, and untracked changes.',
       expectedCommands: ['git status'],
-      hints: ['Use git followed by a state-checking subcommand.', 'The command is two words.'],
+      hints: [
+        'Use git followed by a state-checking subcommand.',
+        'The command is two words.'
+      ],
       xpReward: 95,
       badgeReward: 'Git Initiate',
       difficulty: 1,

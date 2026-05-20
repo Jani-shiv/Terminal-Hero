@@ -21,6 +21,23 @@ void main() {
     expect(list.output, contains('lab'));
   });
 
+  test('does not create an already existing directory', () {
+    final engine = ShellEngine.seeded();
+
+    final create = engine.run('mkdir logs');
+
+    expect(create.success, isFalse);
+    expect(create.output, contains('File exists'));
+  });
+
+  test('fails file operations for missing sources', () {
+    final engine = ShellEngine.seeded();
+
+    expect(engine.run('rm missing.txt').success, isFalse);
+    expect(engine.run('cp missing.txt copy.txt').success, isFalse);
+    expect(engine.run('mv missing.txt moved.txt').success, isFalse);
+  });
+
   test('suggests known commands for typos', () {
     final engine = ShellEngine.seeded();
 

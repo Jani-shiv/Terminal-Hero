@@ -54,10 +54,14 @@ class SessionController extends StateNotifier<SessionState> {
   }
 
   void completeMission(Mission mission) {
+    if (state.profile.completedMissions.contains(mission.id)) return;
+
     final nextProfile = ProgressionService.awardXp(
       state.profile,
       mission.xpReward,
       mission.badgeReward,
+    ).copyWith(
+      completedMissions: [...state.profile.completedMissions, mission.id],
     );
     state = state.copyWith(profile: nextProfile);
   }
@@ -68,7 +72,8 @@ final sessionProvider =
   return SessionController();
 });
 
-final missionsProvider = Provider<List<Mission>>((ref) => SampleContent.missions);
+final missionsProvider =
+    Provider<List<Mission>>((ref) => SampleContent.missions);
 
 final dailyChallengeProvider = Provider<Mission>((ref) {
   final missions = ref.watch(missionsProvider);
@@ -91,4 +96,5 @@ final dailyChallengeProvider = Provider<Mission>((ref) {
   return missions[DateTime.now().day % missions.length];
 });
 
-final shellEngineProvider = Provider<ShellEngine>((ref) => ShellEngine.seeded());
+final shellEngineProvider =
+    Provider<ShellEngine>((ref) => ShellEngine.seeded());

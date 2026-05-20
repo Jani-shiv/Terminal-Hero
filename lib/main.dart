@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +14,8 @@ Future<void> main() async {
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.presentError(details);
     // Forward to zone so runZonedGuarded handler receives it.
-    Zone.current.handleUncaughtError(details.exception, details.stack ?? StackTrace.current);
+    Zone.current.handleUncaughtError(
+        details.exception, details.stack ?? StackTrace.current);
   };
 
   // Provide a user-friendly error widget for build-time failures
@@ -30,11 +30,18 @@ Future<void> main() async {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.error_outline, color: Colors.redAccent, size: 56),
+                  const Icon(Icons.error_outline,
+                      color: Colors.redAccent, size: 56),
                   const SizedBox(height: 12),
-                  const Text('An unexpected error occurred', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
+                  const Text('An unexpected error occurred',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700)),
                   const SizedBox(height: 6),
-                  Text('${details.exception}', style: const TextStyle(color: Colors.white70), textAlign: TextAlign.center),
+                  Text('${details.exception}',
+                      style: const TextStyle(color: Colors.white70),
+                      textAlign: TextAlign.center),
                 ],
               ),
             ),

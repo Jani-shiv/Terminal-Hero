@@ -32,10 +32,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             children: [
               Text(
                 'Choose your path',
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w900),
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium
+                    ?.copyWith(fontWeight: FontWeight.w900),
               ),
               const SizedBox(height: 8),
-              const Text('Terminal Hero will tune missions, streak nudges, and challenges around your goal.'),
+              const Text(
+                  'Terminal Hero will tune missions, streak nudges, and challenges around your goal.'),
               const SizedBox(height: 24),
               Expanded(
                 child: GridView.count(
@@ -51,18 +55,27 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                           duration: const Duration(milliseconds: 220),
                           padding: const EdgeInsets.all(14),
                           decoration: BoxDecoration(
-                            color: selected == goal.$1 ? AppTheme.neon.withOpacity(0.15) : AppTheme.panel,
+                            color: selected == goal.$1
+                                ? AppTheme.neon.withValues(alpha: 0.15)
+                                : AppTheme.panel,
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
-                              color: selected == goal.$1 ? AppTheme.neon : AppTheme.neon.withOpacity(0.15),
+                              color: selected == goal.$1
+                                  ? AppTheme.neon
+                                  : AppTheme.neon.withValues(alpha: 0.15),
                             ),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(goal.$2, color: selected == goal.$1 ? AppTheme.neon : AppTheme.cyan),
+                              Icon(goal.$2,
+                                  color: selected == goal.$1
+                                      ? AppTheme.neon
+                                      : AppTheme.cyan),
                               const Spacer(),
-                              Text(goal.$1, style: const TextStyle(fontWeight: FontWeight.w800)),
+                              Text(goal.$1,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w800)),
                             ],
                           ),
                         ),
@@ -71,7 +84,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 ),
               ),
               FilledButton(
-                onPressed: () => ref.read(sessionProvider.notifier).completeOnboarding(selected),
+                onPressed: () => ref
+                    .read(sessionProvider.notifier)
+                    .completeOnboarding(selected),
                 child: const Center(child: Text('Enter the terminal')),
               ),
             ],

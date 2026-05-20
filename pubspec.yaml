@@ -2,7 +2,7 @@ name: terminal_hero
 description: A gamified Linux learning app with terminal missions, XP, streaks, badges, and social sharing.
 publish_to: "none"
 
-version: 1.0.0+1
+version: 1.2.0+3
 
 environment:
   sdk: ">=3.4.0 <4.0.0"

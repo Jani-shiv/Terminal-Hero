@@ -37,7 +37,8 @@ class Mission {
   final int difficulty;
 
   bool validates(String input) {
-    final normalized = input.trim().replaceAll(RegExp(r'\s+'), ' ');
+    final normalized =
+        input.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
     return expectedCommands.contains(normalized);
   }
 }

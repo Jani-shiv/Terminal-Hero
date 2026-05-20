@@ -15,7 +15,8 @@ class MissionsScreen extends ConsumerWidget {
     final missions = ref.watch(missionsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Missions'), backgroundColor: Colors.transparent),
+      appBar: AppBar(
+          title: const Text('Missions'), backgroundColor: Colors.transparent),
       body: ListView.separated(
         padding: const EdgeInsets.all(18),
         itemCount: missions.length,
@@ -23,14 +24,15 @@ class MissionsScreen extends ConsumerWidget {
         itemBuilder: (context, index) {
           final mission = missions[index];
           return NeonCard(
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => MissionPlayScreen(mission: mission))),
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => MissionPlayScreen(mission: mission))),
             child: Row(
               children: [
                 Container(
                   width: 46,
                   height: 46,
                   decoration: BoxDecoration(
-                    color: AppTheme.neon.withOpacity(0.12),
+                    color: AppTheme.neon.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(_iconFor(mission.category), color: AppTheme.neon),
@@ -40,13 +42,16 @@ class MissionsScreen extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(mission.title, style: const TextStyle(fontWeight: FontWeight.w900)),
+                      Text(mission.title,
+                          style: const TextStyle(fontWeight: FontWeight.w900)),
                       const SizedBox(height: 4),
-                      Text(mission.story, maxLines: 2, overflow: TextOverflow.ellipsis),
+                      Text(mission.story,
+                          maxLines: 2, overflow: TextOverflow.ellipsis),
                     ],
                   ),
                 ),
-                Text('+${mission.xpReward}', style: const TextStyle(color: AppTheme.cyan)),
+                Text('+${mission.xpReward}',
+                    style: const TextStyle(color: AppTheme.cyan)),
               ],
             ),
           );

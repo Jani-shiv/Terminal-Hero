@@ -24,9 +24,9 @@ class TerminalWindow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.72),
+        color: Colors.black.withValues(alpha: 0.72),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppTheme.neon.withOpacity(0.24)),
+        border: Border.all(color: AppTheme.neon.withValues(alpha: 0.24)),
       ),
       child: Column(
         children: [
@@ -34,8 +34,9 @@ class TerminalWindow extends StatelessWidget {
             height: 38,
             padding: const EdgeInsets.symmetric(horizontal: 12),
             decoration: BoxDecoration(
-              color: AppTheme.panelAlt.withOpacity(0.95),
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
+              color: AppTheme.panelAlt.withValues(alpha: 0.95),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(8)),
             ),
             child: const Row(
               children: [
@@ -56,12 +57,15 @@ class TerminalWindow extends StatelessWidget {
                 for (final line in lines)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
-                    child: Text(line, style: const TextStyle(color: AppTheme.neon, height: 1.25)),
+                    child: Text(line,
+                        style: const TextStyle(
+                            color: AppTheme.neon, height: 1.25)),
                   ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('hero:$cwd\$ ', style: const TextStyle(color: AppTheme.cyan)),
+                    Text('hero:$cwd\$ ',
+                        style: const TextStyle(color: AppTheme.cyan)),
                     Expanded(
                       child: TextField(
                         controller: controller,
@@ -89,7 +93,8 @@ class TerminalWindow extends StatelessWidget {
             SizedBox(
               height: 42,
               child: ListView.separated(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 scrollDirection: Axis.horizontal,
                 itemCount: suggestions.length,
                 separatorBuilder: (_, __) => const SizedBox(width: 8),
@@ -100,7 +105,8 @@ class TerminalWindow extends StatelessWidget {
                     label: Text(suggestion),
                     onPressed: () {
                       controller.text = suggestion;
-                      controller.selection = TextSelection.collapsed(offset: suggestion.length);
+                      controller.selection =
+                          TextSelection.collapsed(offset: suggestion.length);
                       onChanged?.call(suggestion);
                     },
                   );

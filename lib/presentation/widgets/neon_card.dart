@@ -19,12 +19,12 @@ class NeonCard extends StatelessWidget {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 220),
       decoration: BoxDecoration(
-        color: AppTheme.panel.withOpacity(0.88),
+        color: AppTheme.panel.withValues(alpha: 0.88),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppTheme.neon.withOpacity(0.22)),
+        border: Border.all(color: AppTheme.neon.withValues(alpha: 0.22)),
         boxShadow: [
           BoxShadow(
-            color: AppTheme.neon.withOpacity(0.08),
+            color: AppTheme.neon.withValues(alpha: 0.08),
             blurRadius: 22,
             spreadRadius: 1,
           ),

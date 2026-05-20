@@ -37,7 +37,9 @@ class _MissionPlayScreenState extends ConsumerState<MissionPlayScreen> {
     final engine = ref.watch(shellEngineProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.mission.title), backgroundColor: Colors.transparent),
+      appBar: AppBar(
+          title: Text(widget.mission.title),
+          backgroundColor: Colors.transparent),
       body: Stack(
         children: [
           SafeArea(
@@ -48,17 +50,20 @@ class _MissionPlayScreenState extends ConsumerState<MissionPlayScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.mission.story, style: const TextStyle(fontWeight: FontWeight.w900)),
+                      Text(widget.mission.story,
+                          style: const TextStyle(fontWeight: FontWeight.w900)),
                       const SizedBox(height: 8),
                       Text(widget.mission.explanation),
                       const SizedBox(height: 10),
                       Row(
                         children: [
-                          const Icon(Icons.workspace_premium, color: AppTheme.amber),
+                          const Icon(Icons.workspace_premium,
+                              color: AppTheme.amber),
                           const SizedBox(width: 8),
                           Text('+${widget.mission.xpReward} XP'),
                           const Spacer(),
-                          Text('Difficulty ${widget.mission.difficulty}', style: const TextStyle(color: AppTheme.cyan)),
+                          Text('Difficulty ${widget.mission.difficulty}',
+                              style: const TextStyle(color: AppTheme.cyan)),
                         ],
                       ),
                     ],
@@ -81,9 +86,12 @@ class _MissionPlayScreenState extends ConsumerState<MissionPlayScreen> {
                   NeonCard(
                     child: Row(
                       children: [
-                        const Icon(Icons.lightbulb_outline, color: AppTheme.amber),
+                        const Icon(Icons.lightbulb_outline,
+                            color: AppTheme.amber),
                         const SizedBox(width: 10),
-                        Expanded(child: Text(widget.mission.hints[(attempts - 1).clamp(0, widget.mission.hints.length - 1)])),
+                        Expanded(
+                            child: Text(widget.mission.hints[(attempts - 1)
+                                .clamp(0, widget.mission.hints.length - 1)])),
                       ],
                     ),
                   ),
@@ -95,7 +103,12 @@ class _MissionPlayScreenState extends ConsumerState<MissionPlayScreen> {
             child: ConfettiWidget(
               confettiController: confetti,
               blastDirectionality: BlastDirectionality.explosive,
-              colors: const [AppTheme.neon, AppTheme.cyan, AppTheme.magenta, AppTheme.amber],
+              colors: const [
+                AppTheme.neon,
+                AppTheme.cyan,
+                AppTheme.magenta,
+                AppTheme.amber
+              ],
             ),
           ),
         ],
@@ -115,7 +128,9 @@ class _MissionPlayScreenState extends ConsumerState<MissionPlayScreen> {
       } else if (result.output.isNotEmpty) {
         lines.add(result.output);
       }
-      if (result.suggestion != null) lines.add('hint: did you mean ${result.suggestion}?');
+      if (result.suggestion != null) {
+        lines.add('hint: did you mean ${result.suggestion}?');
+      }
       controller.clear();
       draft = '';
       attempts += missionSolved ? 0 : 1;
@@ -126,7 +141,8 @@ class _MissionPlayScreenState extends ConsumerState<MissionPlayScreen> {
       confetti.play();
       ref.read(sessionProvider.notifier).completeMission(widget.mission);
       setState(() {
-        lines.add('MISSION COMPLETE: +${widget.mission.xpReward} XP, badge unlocked: ${widget.mission.badgeReward}');
+        lines.add(
+            'MISSION COMPLETE: +${widget.mission.xpReward} XP, badge unlocked: ${widget.mission.badgeReward}');
       });
     }
   }

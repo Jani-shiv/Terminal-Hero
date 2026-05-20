@@ -23,6 +23,7 @@ class LocalCacheService {
   Future<void> queueProgressSync(Map<String, dynamic> progress) async {
     final prefs = await SharedPreferences.getInstance();
     final existing = prefs.getStringList(_pendingProgressKey) ?? [];
-    await prefs.setStringList(_pendingProgressKey, [...existing, jsonEncode(progress)]);
+    await prefs.setStringList(
+        _pendingProgressKey, [...existing, jsonEncode(progress)]);
   }
 }

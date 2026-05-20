@@ -10,15 +10,26 @@ class LeaderboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Leaderboards'), backgroundColor: Colors.transparent),
+      appBar: AppBar(
+          title: const Text('Leaderboards'),
+          backgroundColor: Colors.transparent),
       body: ListView(
         padding: const EdgeInsets.all(18),
         children: [
           SegmentedButton<String>(
             segments: const [
-              ButtonSegment(value: 'global', label: Text('Global'), icon: Icon(Icons.public)),
-              ButtonSegment(value: 'weekly', label: Text('Weekly'), icon: Icon(Icons.bolt)),
-              ButtonSegment(value: 'friends', label: Text('Friends'), icon: Icon(Icons.group)),
+              ButtonSegment(
+                  value: 'global',
+                  label: Text('Global'),
+                  icon: Icon(Icons.public)),
+              ButtonSegment(
+                  value: 'weekly',
+                  label: Text('Weekly'),
+                  icon: Icon(Icons.bolt)),
+              ButtonSegment(
+                  value: 'friends',
+                  label: Text('Friends'),
+                  icon: Icon(Icons.group)),
             ],
             selected: const {'global'},
             onSelectionChanged: (_) {},
@@ -35,10 +46,13 @@ class LeaderboardScreen extends StatelessWidget {
                       height: 36,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: i < 3 ? AppTheme.amber.withOpacity(0.16) : Colors.white10,
+                        color: i < 3
+                            ? AppTheme.amber.withValues(alpha: 0.16)
+                            : Colors.white10,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Text('#${i + 1}', style: const TextStyle(fontWeight: FontWeight.w900)),
+                      child: Text('#${i + 1}',
+                          style: const TextStyle(fontWeight: FontWeight.w900)),
                     ),
                     const SizedBox(width: 12),
                     Text(SampleContent.leaderboard[i].$4),
@@ -47,12 +61,17 @@ class LeaderboardScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(SampleContent.leaderboard[i].$1, style: const TextStyle(fontWeight: FontWeight.w900)),
-                          Text(SampleContent.leaderboard[i].$3, style: const TextStyle(color: AppTheme.cyan, fontSize: 12)),
+                          Text(SampleContent.leaderboard[i].$1,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w900)),
+                          Text(SampleContent.leaderboard[i].$3,
+                              style: const TextStyle(
+                                  color: AppTheme.cyan, fontSize: 12)),
                         ],
                       ),
                     ),
-                    Text('${SampleContent.leaderboard[i].$2} XP', style: const TextStyle(color: AppTheme.neon)),
+                    Text('${SampleContent.leaderboard[i].$2} XP',
+                        style: const TextStyle(color: AppTheme.neon)),
                   ],
                 ),
               ),

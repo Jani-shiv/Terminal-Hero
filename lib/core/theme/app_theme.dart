@@ -32,11 +32,11 @@ class AppTheme {
       ),
       useMaterial3: true,
       cardTheme: CardThemeData(
-        color: panel.withOpacity(0.86),
+        color: panel.withValues(alpha: 0.86),
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
-          side: BorderSide(color: neon.withOpacity(0.16)),
+          side: BorderSide(color: neon.withValues(alpha: 0.16)),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
@@ -52,11 +52,11 @@ class AppTheme {
         fillColor: panelAlt,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: neon.withOpacity(0.25)),
+          borderSide: BorderSide(color: neon.withValues(alpha: 0.25)),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: neon.withOpacity(0.18)),
+          borderSide: BorderSide(color: neon.withValues(alpha: 0.18)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),

@@ -20,7 +20,8 @@ class AuthRepository {
   }
 
   Future<UserCredential> registerWithEmail(String email, String password) {
-    return _auth.createUserWithEmailAndPassword(email: email, password: password);
+    return _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
   }
 
   Future<UserCredential> signInWithGoogle() async {
@@ -57,6 +58,10 @@ class UserProfileRepository {
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> watchLeaderboard() {
-    return _firestore.collection('users').orderBy('xp', descending: true).limit(50).snapshots();
+    return _firestore
+        .collection('users')
+        .orderBy('xp', descending: true)
+        .limit(50)
+        .snapshots();
   }
 }
