@@ -37,7 +37,7 @@ jobs:
         with:
           tag: ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref_name }}
           name: Terminal Hero ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref_name }}
-          files: build/app/outputs/flutter-apk/app-release.apk
+          artifacts: build/app/outputs/flutter-apk/app-release.apk
           artifactContentType: application/vnd.android.package-archive
           allowUpdates: true
           replacesArtifacts: true
